@@ -1,0 +1,72 @@
+/* Single source of truth. Components never contain raw hex: they use Tailwind
+   names that resolve to these variables (see tailwind/preset.cjs). */
+:root {
+  color-scheme: dark;
+
+  /* Surfaces: base / elevated / floating (+ interaction fills, all solid) */
+  --surface-base: #0A0C0E;
+  --surface-elevated: #111417;
+  --surface-floating: #171B1F;
+  --surface-hover: #1C2126;
+  --surface-active: #242A30;
+
+  --border-subtle: #1C2024;
+  --border-default: #2A2F33;
+  --border-strong: #3A4045;
+
+  --text-primary: #E8EAED;
+  --text-secondary: #9AA1A8;
+  --text-tertiary: #6B7279;
+  --text-disabled: #4A5056;
+  --text-on-accent: #0A0C0E;
+
+  /* Brand accent. Never a status colour. */
+  --accent: #9B6BFF;
+  --accent-hover: #AB82FF;
+  --accent-active: #8657F0;
+  --accent-subtle: #1E1730;
+
+  /* Semantic */
+  --success: #3ECF8E;
+  --success-subtle: #0F2A20;
+  --warn: #F5B83D;
+  --warn-subtle: #2C2210;
+  --danger: #F4554F;
+  --danger-hover: #F66A65;
+  --danger-active: #E0433D;
+  --danger-subtle: #2E1514;
+  --info: #4FA3FF;
+  --info-subtle: #10223A;
+
+  /* Presence. In-game uses the brand accent per the brief; swap here if that
+     ever conflicts with the "purple is not a status colour" rule. */
+  --presence-online: var(--success);
+  --presence-ingame: var(--accent);
+  --presence-away: var(--warn);
+  --presence-offline: var(--text-tertiary);
+
+  --scroll-thumb: #2A2F33;
+  --scroll-thumb-hover: #3A4045;
+
+  /* Radius: 4 / 8 / 12 only */
+  --radius-1: 4px;
+  --radius-2: 8px;
+  --radius-3: 12px;
+
+  /* Control heights (4pt grid) */
+  --control-sm: 28px;
+  --control-md: 32px;
+  --control-lg: 40px;
+
+  /* Motion */
+  --ease: cubic-bezier(0.4, 0, 0.2, 1);
+  --dur-fast: 150ms;
+  --dur-base: 200ms;
+  --dur-slow: 250ms;
+
+  /* Shadows exist on floating layers only */
+  --shadow-floating: 0 8px 24px 0 rgb(0 0 0 / 0.5);
+
+  --font-sans: 'Inter Display', 'Inter Variable', 'Inter', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono Variable', 'JetBrains Mono', ui-monospace, Consolas, monospace;
+}

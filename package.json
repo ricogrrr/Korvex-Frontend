@@ -1,0 +1,10 @@
+{
+  "name": "korvex-frontend",
+  "private": true,
+  "workspaces": ["launcher", "shared"],
+  "scripts": {
+    "dev": "npm run dev -w launcher",
+    "build": "npm run build -w launcher",
+    "test": "npm run test -w launcher"
+  }
+}
