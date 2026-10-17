@@ -1,7 +1,7 @@
-﻿/* Real 3D Mew for the skin preview - same Bedrock geo the in-game renderer
-   parses (mods/korvex-legacy/resources/com/korvex/legacy/mew.geo.json),
-   rebuilt as a Three.js hierarchy: T(pivot)Â·RÂ·T(-pivot) per bone and per
-   cube, classic box-UV quad layout, the procedural 64Ã—32 texture from
+/* Real 3D Mew for the skin preview - same Bedrock geo the in-game renderer
+   parses (./mewGeometry.ts),
+   rebuilt as a Three.js hierarchy: T(pivot)·R·T(-pivot) per bone and per
+   cube, classic box-UV quad layout, the procedural 64×32 texture from
    PetRenderer.buildTexture(), and the animFor() idle table. */
 
 import {
@@ -30,7 +30,7 @@ const TEXW = geo.description.texture_width;
 const TEXH = geo.description.texture_height;
 const D2R = Math.PI / 180;
 
-/* ---------- procedural 64Ã—32 texture - 1:1 with PetRenderer.buildTexture() ---------- */
+/* ---------- procedural 64×32 texture - 1:1 with PetRenderer.buildTexture() ---------- */
 
 function paintMewTexture(): HTMLCanvasElement {
   const c = document.createElement('canvas');
@@ -39,8 +39,8 @@ function paintMewTexture(): HTMLCanvasElement {
   g.fillStyle = '#f7a8c8'; g.fillRect(0, 0, 64, 32);          // Mew pink
   eye(g, 13, 13);                                            // eye_left
   eye(g, 0, 13);                                             // eye_right
-  g.clearRect(56, 24, 8, 5);                                 // eyelid_left â†’ open
-  g.clearRect(56, 19, 8, 5);                                 // eyelid_right â†’ open
+  g.clearRect(56, 24, 8, 5);                                 // eyelid_left → open
+  g.clearRect(56, 19, 8, 5);                                 // eyelid_right → open
   return c;
 }
 function eye(g: CanvasRenderingContext2D, u: number, v: number) {
@@ -95,8 +95,8 @@ function boxGeometry(c: GeoCube): BufferGeometry {
       pos[i + 2] = p[2] ? hi[2] : lo[2];
       nor[i] = f.n[0]; nor[i + 1] = f.n[1]; nor[i + 2] = f.n[2];
       const r = uvRects[fi];
-      /* quad corners map: v0â†’(u0,v0) v1â†’(u1,v0) v2â†’(u1,v1) v3â†’(u0,v1) -
-         but GL's south face uv runs (u+d+w+d)â†’+w over x0â†’x1, so per-face
+      /* quad corners map: v0→(u0,v0) v1→(u1,v0) v2→(u1,v1) v3→(u0,v1) -
+         but GL's south face uv runs (u+d+w+d)→+w over x0→x1, so per-face
          rect corners follow the same corner order as the positions */
       const j = (fi * 4 + vi) * 2;
       uvs[j] = (vi === 1 || vi === 2 ? r[2] : r[0]) / TEXW;
@@ -160,7 +160,7 @@ export function createMewModel(): MewModel {
     alphaTest: 0.4,                   /* eyelid cutout - GL_ALPHA_TEST > 0.4 */
   });
 
-  /* index bones, then wire parent â†’ child */
+  /* index bones, then wire parent → child */
   const byName = new Map<string, GeoBone>();
   for (const b of geo.bones) byName.set(b.name, b);
   const nodes: BoneNode[] = [];
@@ -174,7 +174,7 @@ export function createMewModel(): MewModel {
     animGroups.set(b.name, anim);
     nodes.push({ name: b.name, pivot: b.pivot, animGroup: anim });
 
-    /* static rotation - Euler 'ZYX' = GL's RzÂ·RyÂ·Rx order */
+    /* static rotation - Euler 'ZYX' = GL's Rz·Ry·Rx order */
     let parent = anim;
     if (b.rotation) {
       const stat = new Group();

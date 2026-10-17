@@ -20,6 +20,7 @@ fixture data (players, friends, cosmetics, versions, servers, chat).
 | ---- | ---- |
 | `launcher/` | The React + Vite + Tailwind app (`src/screens`, `src/shell`, `src/services`) |
 | `shared/` | `@korvex/ui` component library consumed via a workspace dep |
+| `launcher/src/shell/mewGeometry.ts` | pet model the cosmetics preview renders (inlined from the mod asset) |
 
 ## Mock backend
 
